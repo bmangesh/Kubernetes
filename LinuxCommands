@@ -1,0 +1,3 @@
+#SSH PORT FORWARDING EXAMPLE
+ssh -L port:IP:22  root@IP
+ssh -L 9000:localhost:8001 root@localhost -p port
