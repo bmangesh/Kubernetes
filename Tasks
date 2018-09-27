@@ -1,3 +1,5 @@
+Task-1
+
 We have several Kubernetes Clusters.  We use Prometheus to manage and monitor these.
 
 The project to to build query scripts to:
@@ -6,3 +8,27 @@ The project to to build query scripts to:
 3) Get t CPU, memory, disk utilization of each worker from Prometheus for a period of time
 
 The job is to work with our team in a consultative/collaborative way.  The job is immediate for the right person.
+
+---------------------------------------------------------------------------------------------------------------------
+
+Task-2
+We are migrating our mission critical services to  Kubernetes and Istio infra running on AWS. These services need to scale to processing a few of thousands requests per second with 99.999% availability. We are looking for expert consultation to 
+
+a) Audit our architecture to identify any potential failure points
+b) Come up with failure testing strategies
+c) Provide help with issues like those stated below. 
+
+1. We use KOPS (https://github.com/kubernetes/kops) for managing the K8S cluster in AWS. We have 3 master currency and it works in HA. We had a issue recently where the active master died because of an EC2 instance degradation. 
+KOPS uses a DNS with private IPs of the master in Route53 to talk to the apiserver. In this case, we had some downtime as the EC2 degradation led to an inconsistent state. The github issue was suggesting to use an internal load-balancer for this. Then we will have to use VPNs to connect to the private network for talking to the cluster from our work machines. Ref: https://github.com/kubernetes/kops/issues/4252
+
+2. While exposing ingress/istio-ingressgateway services as load-balancer (which add an ELB), it adds all the instances in the cluster and has nodePort exposed as listeners and the first port in the service declaration in the list is taken up as the health check (TCP health check). This works fine. The issue happens when an instance has degraded performance, or when weave/kube-proxy fails to work as intended, we get timeouts because the instance goes in and out of the ELB. 
+
+We can figure out a way to do health check better by using an HTTP health-check instead of a TCP one, but could again kill instance which could kill some nodes unintentionally. 
+
+We could figure-out how to control this by not adding all the instance to ELB. 
+https://stackoverflow.com/questions/41288183/how-does-kubernetes-select-nodes-to-add-to-the-load-balancers-on-aws
+https://github.com/kubernetes/kubernetes/blob/master/pkg/cloudprovider/providers/aws/aws.go
+
+3. Wanted to know about extending the cluster to different regions (federation) and what kind of issues to expect w.r.t network overlay - weave's performance, 
+
+4. What are the general best practices while using K8 in AWS - choosing right EC2 instances, right ingress configuration strategies etc.
