@@ -1,0 +1,8 @@
+We have several Kubernetes Clusters.  We use Prometheus to manage and monitor these.
+
+The project to to build query scripts to:
+1) get list of inventory of workers and masters 
+2) get the CPU, Memory and disk specs of the workers and masters
+3) Get t CPU, memory, disk utilization of each worker from Prometheus for a period of time
+
+The job is to work with our team in a consultative/collaborative way.  The job is immediate for the right person.
