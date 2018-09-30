@@ -32,3 +32,12 @@ https://github.com/kubernetes/kubernetes/blob/master/pkg/cloudprovider/providers
 3. Wanted to know about extending the cluster to different regions (federation) and what kind of issues to expect w.r.t network overlay - weave's performance, 
 
 4. What are the general best practices while using K8 in AWS - choosing right EC2 instances, right ingress configuration strategies etc.
+
+Task-3
+Our application needs to process around 10 millions of transaction every day.  To achieve this we are going to move on a micro service architecture with node.js. We expect you to build Kubernetes infrastructure with a scale up and down process. 
+Tasks
+
+-	Create Kubernetes cluster
+-	Build container image with local image manager
+-	Demonstrate sample node script deployment with scale up and down
+-	Installation & deployment manual with 30 minutes demo
